@@ -1,8 +1,6 @@
-# GitBucket Docker image
+# GitBucket Docker Image [![CircleCI](https://circleci.com/gh/int128/gitbucket-docker.svg?style=shield)](https://circleci.com/gh/int128/gitbucket-docker)
 
-Yet another GitBucket Docker image.
-
-[GitBucket](https://github.com/gitbucket/gitbucket) is a Git platform powered by Scala with easy installation, high extensibility and GitHub API compatibility.
+Yet another [GitBucket](https://github.com/gitbucket/gitbucket) Docker image, continuously updated and tested by [CircleCI](https://circleci.com/gh/int128/gitbucket-docker).
 
 
 ## Getting Started
@@ -14,7 +12,9 @@ docker run -p 8080:8080 -p 29418:29418 int128/gitbucket
 You can save your GitBucket data to `./gitbucket` persistently as follows:
 
 ```sh
-docker run -p 8080:8080 -p 29418:29418 -v ./gitbucket:/var/gitbucket int128/gitbucket
+mkdir -p /data/gitbucket
+chown -R 1000:1000 /data/gitbucket
+docker run -p 8080:8080 -p 29418:29418 -v /data/gitbucket:/var/gitbucket int128/gitbucket
 ```
 
 This image runs as `gitbucket` user (uid=1000, gid=1000), not `root` for security reason.
@@ -30,7 +30,8 @@ This image exposes the following ports:
 Consider the followings:
 
 - Create a persistent volume claim and mount to `/var/gitbucket`.
-- Set readiness probe and liveness probe with access to `pod:8080/signin`. It always return 200.
+- Change owner of `/var/gitbucket` by an init container.
+- Set readiness probe and liveness probe with access to `pod:8080/signin`. It should return 200.
 
 
 ## Configuration
