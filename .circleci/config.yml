@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-image:
     docker:
       - image: docker:stable-git
     steps:
@@ -12,20 +12,31 @@ jobs:
       - run: docker stop gitbucket
       - run: docker logs gitbucket
       - run: docker rm gitbucket
-  check-and-push-latest:
+  build-chart:
     docker:
-      - image: debian:stretch
+      - image: alpine
     steps:
       - checkout
-      - run: apt update
-      - run: apt install -y git curl jq
+      - run:
+          name: helm-github-pages
+          command: wget -O - https://raw.githubusercontent.com/int128/helm-github-pages/master/publish.sh | sh
+          environment:
+            - GITHUB_PAGES_REPO: int128/helm-charts
+  check-and-push-latest:
+    docker:
+      - image: alpine
+    steps:
+      - checkout
+      - run: apk update
+      - run: apk add bash ca-certificates git openssh curl jq
       - run: ./.circleci/check-and-push-latest.sh
 
 workflows:
   version: 2
   commit:
     jobs:
-      - build
+      - build-image
+      - build-chart
       - check-and-push-latest
   check-and-push-latest:
     triggers:
