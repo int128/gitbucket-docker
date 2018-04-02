@@ -1,9 +1,11 @@
-# GitBucket Docker Image [![CircleCI](https://circleci.com/gh/int128/gitbucket-docker.svg?style=shield)](https://circleci.com/gh/int128/gitbucket-docker)
+# GitBucket on Docker and Kubernetes [![CircleCI](https://circleci.com/gh/int128/gitbucket-docker.svg?style=shield)](https://circleci.com/gh/int128/gitbucket-docker)
 
-Yet another [GitBucket](https://github.com/gitbucket/gitbucket) Docker image and Kubernetes Helm chart, continuously updated and tested by [CircleCI](https://circleci.com/gh/int128/gitbucket-docker).
+A [GitBucket](https://github.com/gitbucket/gitbucket) Docker image and Kubernetes Helm chart.
+
+This repository is automatically updated to the latest GitBucket by [CircleCI](https://circleci.com/gh/int128/gitbucket-docker).
 
 
-## Docker
+## Getting Started on Docker
 
 ```sh
 docker run -p 8080:8080 -p 29418:29418 int128/gitbucket
@@ -39,7 +41,7 @@ You can set the following environment variables:
 | `JAVA_OPTS`           | JVM options. Defaults to options setting JVM heap by container memory limit. See [`Dockerfile`](Dockerfile) for more.
 
 
-## Kubernetes Helm
+## Getting Started on Kubernetes Helm
 
 ```sh
 helm repo add int128.github.io https://int128.github.io/helm-charts
