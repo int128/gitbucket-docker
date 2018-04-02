@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:stable-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build . -t gitbucket
+      - run: docker run -d --name gitbucket gitbucket
+      - run: sleep 15 && docker exec gitbucket curl localhost:8080
+      - run: docker stop gitbucket
+      - run: docker logs gitbucket
+      - run: docker rm gitbucket
+  check-and-push-latest:
+    docker:
+      - image: debian:stretch
+    steps:
+      - checkout
+      - run: apt update
+      - run: apt install -y git curl jq
+      - run: ./.circleci/check-and-push-latest.sh
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+      - check-and-push-latest
+  check-and-push-latest:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - check-and-push-latest
