@@ -38,7 +38,7 @@ workflows:
       - build-image
       - build-chart
       - check-and-push-latest
-  check-and-push-latest:
+  daily-update:
     triggers:
       - schedule:
           cron: "0 0 * * *"

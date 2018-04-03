@@ -3,11 +3,10 @@ set -e
 set -o pipefail
 set -x
 
-test "$CIRCLE_USERNAME"
 test "$CIRCLE_BRANCH"
 test -f Dockerfile
 
-git config user.email "$CIRCLE_USERNAME@users.noreply.github.com"
+git config user.email "int128@users.noreply.github.com"
 git config user.name "CircleCI"
 mkdir -p "$HOME/.ssh"
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
