@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache git curl bash
+# ttf-dejavu: Fix NPE on font rendering https://github.com/docker-library/openjdk/issues/73
+RUN apk add --no-cache git curl bash ttf-dejavu
 
 ENV GITBUCKET_HOME /var/gitbucket
 
