@@ -1,3 +1,19 @@
+FROM openjdk:8-jdk-alpine AS builder
+
+ENV SBT_VERSION 1.1.2
+RUN apk add --no-cache curl bash unzip && \
+    curl -fL -o /sbt.tgz "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
+    tar -xf /sbt.tgz && \
+    chmod +x /sbt/bin/sbt && \
+    /sbt/bin/sbt sbtVersion
+
+ENV GITBUCKET_BRANCH master
+ADD https://github.com/gitbucket/gitbucket/archive/${GITBUCKET_BRANCH}.zip /${GITBUCKET_BRANCH}.zip
+RUN unzip /${GITBUCKET_BRANCH}.zip && \
+    cd /gitbucket-${GITBUCKET_BRANCH} && \
+    /sbt/bin/sbt executable && \
+    mv -v target/executable/gitbucket.war /
+
 FROM openjdk:8-jdk-alpine
 
 # ttf-dejavu: Fix NPE on font rendering https://github.com/docker-library/openjdk/issues/73
@@ -11,8 +27,7 @@ RUN addgroup -g 1000 gitbucket && \
 
 VOLUME /var/gitbucket
 
-ENV GITBUCKET_VERSION 4.23.1
-RUN curl -fL "https://github.com/gitbucket/gitbucket/releases/download/${GITBUCKET_VERSION}/gitbucket.war" -o /usr/share/gitbucket/gitbucket.war
+COPY --from=builder /gitbucket.war /usr/share/gitbucket/gitbucket.war
 
 COPY gitbucket.sh /usr/share/gitbucket/gitbucket.sh
 RUN chmod +x /usr/share/gitbucket/gitbucket.sh
