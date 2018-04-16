@@ -58,7 +58,6 @@ ingress:
 
 service:
   type: ClusterIP
-  port: 80
 
 # GitBucket may not work with shared volumes.
 replicaCount: 1
