@@ -5,7 +5,7 @@ A [GitBucket](https://github.com/gitbucket/gitbucket) Docker image and Kubernete
 This repository is automatically updated to the latest GitBucket by [CircleCI](https://circleci.com/gh/int128/gitbucket-docker).
 
 
-## Getting Started on Docker
+## Docker
 
 ```sh
 docker run -p 8080:8080 -p 29418:29418 int128/gitbucket
@@ -26,7 +26,7 @@ This image exposes the following ports:
 - `8080` - Web service
 - `29418` - SSH access to git repository
 
-### Configuration
+### Environment variables
 
 You can set the following environment variables:
 
@@ -41,7 +41,7 @@ You can set the following environment variables:
 | `JAVA_OPTS`           | JVM options. Defaults to options setting JVM heap by container memory limit. See [`Dockerfile`](Dockerfile) for more.
 
 
-## Getting Started on Kubernetes Helm
+## Kubernetes Helm
 
 ```sh
 helm repo add int128.github.io https://int128.github.io/helm-charts
@@ -55,7 +55,7 @@ The Helm chart considers the followings:
 - Fix owner of `/var/gitbucket` by the init container.
 - Set readiness probe and liveness probe with access to `:8080/signin`. It should return 200.
 
-### Configuration
+### Values
 
 You can set the following values:
 
@@ -74,6 +74,23 @@ You can set the following values:
 | `resources.requests.memory`       | Memory request. Defaults to `1Gi`.
 | `ingress.enabled`                 | If true, an ingress is be created.
 | `ingress.hosts`                   | A list of hosts for the ingress.
+
+
+## External database
+
+You can create a database and user for the GitBucket as follows:
+
+```sql
+# PostgreSQL
+CREATE DATABASE gitbucket;
+CREATE USER gitbucket PASSWORD 'gitbucket';
+GRANT ALL PRIVILEGES ON DATABASE gitbucket TO gitbucket;
+
+# MySQL
+CREATE DATABASE gitbucket;
+GRANT ALL PRIVILEGES ON gitbucket.* to gitbucket@'%' identified by 'gitbucket';
+FLUSH PRIVILEGES; 
+```
 
 
 ## Contributions
