@@ -2,7 +2,7 @@
 
 image:
   repository: int128/gitbucket
-  tag: "4.26.0"
+  tag: "4.27.0"
   # pullPolicy: IfNotPresent
 
 gitbucket:
