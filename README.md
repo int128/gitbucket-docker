@@ -32,13 +32,13 @@ You can set the following environment variables:
 
 | Name | Value
 |------|------
-| `GITBUCKET_HOME`      | Directory to store data. Defaults to `/var/gitbucket`.
-| `GITBUCKET_BASE_URL`  | Base URL. This may be required if container is behind a reverse proxy.
-| `GITBUCKET_DB_URL`    | [External database](https://github.com/gitbucket/gitbucket/wiki/External-database-configuration) URL. Defaults to H2.
-| `GITBUCKET_DB_USER`   | External database user.
-| `GITBUCKET_DB_USER`   | External database password.
-| `GITBUCKET_OPTS`      | GitBucket command line options.
-| `JAVA_OPTS`           | JVM options. Defaults to options setting JVM heap by container memory limit. See [`Dockerfile`](Dockerfile) for more.
+| `GITBUCKET_HOME`          | Directory to store data. Defaults to `/var/gitbucket`.
+| `GITBUCKET_BASE_URL`      | Base URL. This may be required if container is behind a reverse proxy.
+| `GITBUCKET_DB_URL`        | [External database](https://github.com/gitbucket/gitbucket/wiki/External-database-configuration) URL. Defaults to H2.
+| `GITBUCKET_DB_USER`       | External database user.
+| `GITBUCKET_DB_PASSWORD`   | External database password.
+| `GITBUCKET_OPTS`          | GitBucket command line options.
+| `JAVA_OPTS`               | JVM options. Defaults to options setting JVM heap by container memory limit. See [`Dockerfile`](Dockerfile) for more.
 
 
 ## Kubernetes Helm
