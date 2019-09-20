@@ -2,7 +2,7 @@
 
 image:
   repository: int128/gitbucket
-  tag: "4.32.0"
+  tag: "null"
   # pullPolicy: IfNotPresent
 
 gitbucket:
