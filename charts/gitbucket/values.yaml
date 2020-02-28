@@ -67,3 +67,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# kubernetes may inject environment variables that clash with gitbucket,
+enableServiceLinks: true
+
+# add meta annotations
+annotations: {}
+
+# add meta labels
+labels: {}
+
+# add extra environment variables
+environment: {}

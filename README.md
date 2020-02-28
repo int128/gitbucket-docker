@@ -74,6 +74,10 @@ You can set the following values:
 | `resources.requests.memory`       | Memory request. Defaults to `1Gi`.
 | `ingress.enabled`                 | If true, an ingress is be created.
 | `ingress.hosts`                   | A list of hosts for the ingress.
+| `annotations`                     | Additional annotations. Defaults to `{}`
+| `labels`                          | Additional labels. Defaults to `{}`
+| `environment`                     | Additional environment variables. Defaults to `{}`
+| `enableServiceLinks`              | Indicates whether information about services should be injected into pod's environment variables. Defaults to `true`
 
 
 ## External database
