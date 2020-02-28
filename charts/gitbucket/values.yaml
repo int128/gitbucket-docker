@@ -79,3 +79,6 @@ labels: {}
 
 # add extra environment variables
 environment: {}
+
+# do not create the service with name `gitbucket.fullname` nor set the serviceAccountName in the deployment
+useDefaultServiceAccount: true

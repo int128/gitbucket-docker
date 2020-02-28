@@ -78,6 +78,7 @@ You can set the following values:
 | `labels`                          | Additional labels. Defaults to `{}`
 | `environment`                     | Additional environment variables. Defaults to `{}`
 | `enableServiceLinks`              | Indicates whether information about services should be injected into pod's environment variables. Defaults to `true`
+| `useDefaultServiceAccount`        | Indicates whether the `default` ServiceAccount should be used. Otherwise a ServiceAccount with the name `gitbucket.fullname` will be created. Defaults to `true`
 
 
 ## External database

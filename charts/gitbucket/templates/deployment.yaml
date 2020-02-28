@@ -30,7 +30,9 @@ spec:
       {{- end }}
       {{- end }}
     spec:
+      {{- if not .Values.useDefaultServiceAccount }}
       serviceAccountName: {{ template "gitbucket.fullname" . }}
+      {{- end }}
       {{- if not .Values.enableServiceLinks }}
       enableServiceLinks: false
       {{- end }}
