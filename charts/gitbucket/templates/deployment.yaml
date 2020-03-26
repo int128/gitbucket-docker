@@ -15,10 +15,27 @@ spec:
       release: {{ .Release.Name }}
   template:
     metadata:
+      {{- if .Values.annotations }}
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      {{- end }}
       labels:
         app: {{ template "gitbucket.name" . }}
         release: {{ .Release.Name }}
+      {{- if .Values.labels }}
+      {{- range $key, $value := .Values.labels }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      {{- end }}
     spec:
+      {{- if not .Values.useDefaultServiceAccount }}
+      serviceAccountName: {{ template "gitbucket.fullname" . }}
+      {{- end }}
+      {{- if not .Values.enableServiceLinks }}
+      enableServiceLinks: false
+      {{- end }}
       initContainers:
         - name: chown-data-volume
           image: alpine
@@ -72,6 +89,12 @@ spec:
             - name: GITBUCKET_OPTS
               value: {{ .Values.gitbucket.options }}
 {{- end }}
+            {{- if .Values.environment }}
+            {{- range $key, $val := .Values.environment }}
+            - name: {{ $key | upper }}
+              value: {{ $val | quote }}
+            {{- end }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /signin

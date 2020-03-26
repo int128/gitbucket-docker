@@ -67,3 +67,18 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# kubernetes may inject environment variables that clash with gitbucket,
+enableServiceLinks: true
+
+# add meta annotations
+annotations: {}
+
+# add meta labels
+labels: {}
+
+# add extra environment variables
+environment: {}
+
+# do not create the service with name `gitbucket.fullname` nor set the serviceAccountName in the deployment
+useDefaultServiceAccount: true
