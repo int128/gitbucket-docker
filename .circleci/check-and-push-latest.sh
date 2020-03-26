@@ -16,6 +16,9 @@ git checkout "$CIRCLE_BRANCH"
 
 # Check the latest version
 latest_version="$(curl https://api.github.com/repos/gitbucket/gitbucket/releases/latest | jq -r '.tag_name')"
+if [ "$latest_version" = "null" ]; then
+  exit
+fi
 
 # Update version in Dockerfile
 sed -i -e "s/^ENV GITBUCKET_VERSION .*$/ENV GITBUCKET_VERSION $latest_version/" Dockerfile
