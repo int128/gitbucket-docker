@@ -79,6 +79,8 @@ You can set the following values:
 | `environment`                     | Additional environment variables. Defaults to `{}`
 | `enableServiceLinks`              | Indicates whether information about services should be injected into pod's environment variables. Defaults to `true`
 | `useDefaultServiceAccount`        | Indicates whether the `default` ServiceAccount should be used. Otherwise a ServiceAccount with the name `gitbucket.fullname` will be created. Defaults to `true`
+| `runAsNonRoot`                    | Require that the container will run with a user with any UID other than 0. Defaults to `false`
+| `chownDataDirectoryInInitContainer` | Enable initContainer that will change ownership of data directory to 1000:1000. Defaults to `true`
 
 
 ## External database

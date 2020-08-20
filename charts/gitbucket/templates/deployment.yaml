@@ -42,6 +42,7 @@ spec:
       - name: {{ $pullSecret }}
       {{- end }}
       {{- end }}
+      {{- if .Values.chownDataDirectoryInInitContainer }}
       initContainers:
         - name: chown-data-volume
           image: alpine
@@ -50,8 +51,11 @@ spec:
           volumeMounts:
           - name: data-volume
             mountPath: /var/gitbucket
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            runAsNonRoot: {{ .Values.runAsNonRoot }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
