@@ -3,6 +3,8 @@
 image:
   repository: int128/gitbucket
   tag: "4.34.0"
+  # Pull secrets used for accessing image repositories
+  pullSecrets: []
   # pullPolicy: IfNotPresent
 
 gitbucket:

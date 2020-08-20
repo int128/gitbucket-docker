@@ -36,6 +36,12 @@ spec:
       {{- if not .Values.enableServiceLinks }}
       enableServiceLinks: false
       {{- end }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range $pullSecret := .Values.image.pullSecrets }}
+      - name: {{ $pullSecret }}
+      {{- end }}
+      {{- end }}
       initContainers:
         - name: chown-data-volume
           image: alpine
