@@ -11,7 +11,7 @@ RUN addgroup -g 1000 gitbucket && \
 
 VOLUME /var/gitbucket
 
-ENV GITBUCKET_VERSION 4.35.2
+ENV GITBUCKET_VERSION 4.35.3
 RUN curl -fL "https://github.com/gitbucket/gitbucket/releases/download/${GITBUCKET_VERSION}/gitbucket.war" -o /usr/share/gitbucket/gitbucket.war
 
 COPY gitbucket.sh /usr/share/gitbucket/gitbucket.sh
