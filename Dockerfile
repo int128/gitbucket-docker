@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM azul/zulu-openjdk-alpine:8
 
 # ttf-dejavu: Fix NPE on font rendering https://github.com/docker-library/openjdk/issues/73
 RUN apk add --no-cache git curl bash ttf-dejavu
@@ -23,7 +23,7 @@ EXPOSE 8080
 EXPOSE 29418
 
 # Run as dedicated user
-USER gitbucket
+USER 1000
 
 # Configure heap memory by cgroup memory limit
 # https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits

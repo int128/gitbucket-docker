@@ -2,6 +2,8 @@
 
 image:
   repository: int128/gitbucket
+  # Pull secrets used for accessing image repositories
+  pullSecrets: []
   tag: "4.35.3"
   # pullPolicy: IfNotPresent
 
@@ -82,3 +84,9 @@ environment: {}
 
 # do not create the service with name `gitbucket.fullname` nor set the serviceAccountName in the deployment
 useDefaultServiceAccount: true
+
+# change ownership of data directory to 1000:1000 using initContainer
+chownDataDirectoryInInitContainer: true
+
+# require that the container will run with a user with any UID other than 0
+runAsNonRoot: false
