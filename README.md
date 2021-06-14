@@ -1,4 +1,4 @@
-# GitBucket on Docker and Kubernetes [![CircleCI](https://circleci.com/gh/int128/gitbucket-docker.svg?style=shield)](https://circleci.com/gh/int128/gitbucket-docker)
+# GitBucket on Docker and Kubernetes [![test](https://github.com/int128/gitbucket-docker/actions/workflows/test.yaml/badge.svg)](https://github.com/int128/gitbucket-docker/actions/workflows/test.yaml)
 
 A [GitBucket](https://github.com/gitbucket/gitbucket) Docker image and Kubernetes Helm chart.
 
@@ -42,6 +42,8 @@ You can set the following environment variables:
 
 
 ## Kubernetes Helm
+
+:warning: **NOTE**: Currently Helm chart is not published due to CI issue. Please build it yourself instead
 
 ```sh
 helm repo add int128.github.io https://int128.github.io/helm-charts
