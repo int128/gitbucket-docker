@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile"],
+      "matchStrings": ["^ENV GITBUCKET_VERSION (?<currentValue>.*?)\\n"],
+      "depNameTemplate": "gitbucket/gitbucket",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "fileMatch": ["^charts/gitbucket/"],
+      "matchStrings": ["(?<currentValue>.*?) # renovate: depName=(?<depName>.*?)\\n"],
+      "datasourceTemplate": "github-releases"
+    }
+  ]
+}
