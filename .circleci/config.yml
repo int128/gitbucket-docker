@@ -1,17 +1,5 @@
 version: 2
 jobs:
-  build-image:
-    docker:
-      - image: docker:stable-git
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run: docker build . -t gitbucket
-      - run: docker run -d --name gitbucket gitbucket
-      - run: sleep 15 && docker exec gitbucket curl localhost:8080
-      - run: docker stop gitbucket
-      - run: docker logs gitbucket
-      - run: docker rm gitbucket
   build-chart:
     docker:
       - image: alpine
@@ -35,7 +23,6 @@ workflows:
   version: 2
   commit:
     jobs:
-      - build-image
       - build-chart
       - check-and-push-latest
   daily-update:
