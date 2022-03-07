@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: docker buildx build -t gitbucket .
       - run: docker run -d -p 8080:8080 --name gitbucket gitbucket
       - run: |
