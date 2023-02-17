@@ -1,6 +1,7 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "github>int128/renovate-base",
   ],
   "regexManagers": [
     {
@@ -13,6 +14,6 @@
       "fileMatch": ["^charts/gitbucket/"],
       "matchStrings": ["(?<currentValue>.*?) # renovate: depName=(?<depName>.*?)\\n"],
       "datasourceTemplate": "github-releases"
-    }
-  ]
+    },
+  ],
 }
