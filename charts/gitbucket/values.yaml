@@ -2,7 +2,7 @@
 
 image:
   repository: int128/gitbucket
-  tag: 4.35.3 # renovate: depName=gitbucket/gitbucket
+4.41.0 # renovate: depName=gitbucket/gitbucket
 
   # Pull secrets used for accessing image repositories
   pullSecrets: []
