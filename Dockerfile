@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:8
+FROM azul/zulu-openjdk-alpine:21.0.4
 
 # ttf-dejavu: Fix NPE on font rendering https://github.com/docker-library/openjdk/issues/73
 RUN apk add --no-cache git curl bash ttf-dejavu
